@@ -5,23 +5,35 @@
 
 <span id=title></span>
 
-<div><b><span id=0>0</span>:<span id=1>00</span>:<span id=2>00</span><a onclick=showhide() style=margin:0;text-decoration:none>.</a><span id=3>000</span></b></div>
+<div>
+    <b>
+        <span id=0>0</span>:<span id=1>00</span>:<span id=2>00</span><a onclick=showhide() style=margin:0;text-decoration:none>.</a><span id=3>000</span>
+    </b>
+</div>
 
 <br>
-<span id=controls><a onclick=start()>Start (<span id=start-key-display>H</span>)</a> <a onclick=add_split() style=font-size:150%>Split (space)</a> <a onclick=stop()>Stop (ESC)</a> <a onclick=reset_timer()>Reset (<span id=reset-key-display>T</span>)</a><br><br></span>
+<span id=controls>
+    <a onclick=start()>Start (<span id=start-key-display>H</span>)</a>
+    <a onclick=add_split() style=font-size:150%>Split (space)</a>
+    <a onclick=stop()>Stop (ESC)</a>
+    <a onclick=reset_timer()>Reset (<span id=reset-key-display>T</span>)</a>
+    <br><br>
+</span>
 
 <div id=splits style=font-size:150%></div>
 
-<span id=settings><br>
-<a onclick=save() style=margin:0>Save Settings</a> <a onclick=reset_settings()>Reset Settings</a><br>
-Start: <input id=start-key maxlength=1 size=3 type=text value=H><br>
-Split: <input disabled size=3 style=border:0 type=text value=Space><br>
-Stop: <input disabled size=3 style=border:0 type=text value=ESC><br>
-Reset: <input id=reset-key maxlength=1 size=3 type=text value=T>
-<br><br>
-Split settings go here<br>
-Title customization goes here<br>
-CSS customization goes here
+<span id=settings>
+    <br>
+    <a onclick=save() style=margin:0>Save Settings</a>
+    <a onclick=reset_settings()>Reset Settings</a><br>
+    Start: <input id=start-key maxlength=1 size=3 type=text value=H><br>
+    Split: <input disabled size=3 style=border:0 type=text value=Space><br>
+    Stop: <input disabled size=3 style=border:0 type=text value=ESC><br>
+    Reset: <input id=reset-key maxlength=1 size=3 type=text value=T>
+    <br><br>
+    Split settings go here<br>
+    Title customization goes here<br>
+    CSS customization goes here
 </span>
 
 <script src=timer.js></script>
