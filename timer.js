@@ -74,7 +74,7 @@ function showhide(){
 }
 function start(){
     stop();
-    start_time = new Date().getTime()-(start_time===-1?0:time_ms);
+    start_time = new Date().getTime()-(start_time===-1 ? 0 : time_ms);
     interval = setInterval('draw()',20)
 }
 function stop(){
@@ -97,7 +97,7 @@ if(ls.getItem('timer0')){
 }
 /*fetch reset key from localStorage*/
 if(ls.getItem('timer1')){
-    get('reset-key').value = get('reset-key-display').innerHTML=ls.getItem('timer1')
+    get('reset-key').value = get('reset-key-display').innerHTML = ls.getItem('timer1')
 }else{
     get('reset-key').value = 'T'
 }
@@ -108,8 +108,8 @@ window.onbeforeunload = function(){
     }
 };
 window.onkeydown = function(e){
-    i = window.event?event:e;
-    i = i.charCode?i.charCode:i.keyCode;
+    i = window.event ? event : e;
+    i = i.charCode ? i.charCode : i.keyCode;
     if(i===32){/*Space*/
         e.preventDefault();
         add_split()
