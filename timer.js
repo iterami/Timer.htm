@@ -35,10 +35,10 @@ function calculate_time(){
 
 function draw(){
     calculate_time();
-    i = 3;
-    do{
-        get(i).innerHTML = current_time[i]
-    }while(i--)
+    get(0).innerHTML = current_time[0];
+    get(1).innerHTML = current_time[1];
+    get(2).innerHTML = current_time[2];
+    get(3).innerHTML = current_time[3]
 }
 
 function get(i){
@@ -59,8 +59,12 @@ function reset_timer(){
 
 function reset_settings(){
     if(confirm('Reset settings?')){
-        get('start-key').value = get('start-key-display').innerHTML = 'H';
-        get('reset-key').value = get('reset-key-display').innerHTML = 'T';
+        get('start-key').value = 'H';
+        get('start-key-display').innerHTML = 'H';
+
+        get('reset-key').value = 'T';
+        get('reset-key-display').innerHTML = 'T';
+
         save()
     }
 }
@@ -121,6 +125,7 @@ window.onbeforeunload = function(){
 window.onkeydown = function(e){
     i = window.event ? event : e;
     i = i.charCode ? i.charCode : i.keyCode;
+
     if(i === 32){/*Space*/
         e.preventDefault();
         add_split()
