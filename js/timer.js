@@ -25,7 +25,7 @@ function calculate_time(){
         current_time[2] = '0' + current_time[2];
     }
 
-    /* extra zeroes for milliseconds? */
+    /* extra zeros for milliseconds? */
     if(current_time[3] < 10){
         current_time[3] = '00' + current_time[3];
     }else if(current_time[3] < 100){
@@ -74,11 +74,17 @@ function save(){
     do{
         if(get(['start-key','reset-key'][i]).value == ['H', 'T'][i]){
             ls.removeItem('timer' + i);
+
         }else{
-            ls.setItem('timer' + i,get(['start-key','reset-key'][i]).value);
+            ls.setItem(
+                'timer' + i,
+                get(['start-key','reset-key'][i]).value
+            );
         }
-        get(['start-key-display','reset-key-display'][i]).innerHTML = get(['start-key', 'reset-key'][i]).value;
     }while(i--);
+
+    get('reset-key-display').innerHTML = get('reset-key').value;
+    get('start-key-display').innerHTML = get('start-key').value;
 }
 
 function showhide(){
@@ -108,6 +114,7 @@ var time_ms = 0;
 if(ls.getItem('timer0')){
     get('start-key').value = ls.getItem('timer0');
     get('start-key-display').innerHTML = ls.getItem('timer0');
+
 }else{
     get('start-key').value = 'H';
 }
@@ -116,6 +123,7 @@ if(ls.getItem('timer0')){
 if(ls.getItem('timer1')){
     get('reset-key').value = ls.getItem('timer1');
     get('reset-key-display').innerHTML = ls.getItem('timer1');
+
 }else{
     get('reset-key').value = 'T';
 }
