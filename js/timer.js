@@ -2,7 +2,6 @@ function add_split(){
     if(interval != 0){
         calculate_time();
         get('splits').innerHTML += current_time[0] + ':' + current_time[1] + ':' + current_time[2] + '.' + current_time[3] + '<br>';
-        window.scrollTo(0, 0);
     }
 }
 
