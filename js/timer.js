@@ -1,30 +1,33 @@
 function add_split(){
     if(interval != 0){
         calculate_time();
-        get('splits').innerHTML += current_time[0] + ':' + current_time[1] + ':' + current_time[2] + '.' + current_time[3] + '<br>';
+        get('splits').innerHTML += current_time[0] + ':'
+                                 + current_time[1] + ':'
+                                 + current_time[2] + '.'
+                                 + current_time[3] + '<br>';
     }
 }
 
 function calculate_time(){
     time_ms = new Date().getTime() - start_time;
     current_time = [
-        Math.floor(time_ms / 3600000),/* hours */
-        Math.floor(time_ms / 60000) % 60,/* minutes */
-        Math.floor(time_ms / 1000) % 60,/* seconds */
-        time_ms % 1000/* milliseconds */
+        Math.floor(time_ms / 3600000),// hours
+        Math.floor(time_ms / 60000) % 60,// minutes
+        Math.floor(time_ms / 1000) % 60,// seconds
+        time_ms % 1000// milliseconds
     ];
 
-    /* extra zero for minutes? */
+    // extra zero for minutes?
     if(current_time[1] < 10){
         current_time[1] = '0' + current_time[1];
     }
 
-    /* extra zero for seconds? */
+    // extra zero for seconds?
     if(current_time[2] < 10){
         current_time[2] = '0' + current_time[2];
     }
 
-    /* extra zeros for milliseconds? */
+    // extra zeros for milliseconds?
     if(current_time[3] < 10){
         current_time[3] = '00' + current_time[3];
     }else if(current_time[3] < 100){
@@ -109,7 +112,7 @@ var ls = window.localStorage;
 var start_time = -1;
 var time_ms = 0;
 
-/* fetch start key from localStorage */
+// fetch start key from localStorage
 if(ls.getItem('timer0')){
     get('start-key').value = ls.getItem('timer0');
     get('start-key-display').innerHTML = ls.getItem('timer0');
@@ -118,7 +121,7 @@ if(ls.getItem('timer0')){
     get('start-key').value = 'H';
 }
 
-/* fetch reset key from localStorage */
+// fetch reset key from localStorage
 if(ls.getItem('timer1')){
     get('reset-key').value = ls.getItem('timer1');
     get('reset-key-display').innerHTML = ls.getItem('timer1');
@@ -137,11 +140,11 @@ window.onkeydown = function(e){
     i = window.event ? event : e;
     i = i.charCode ? i.charCode : i.keyCode;
 
-    if(i === 32){/* Space */
+    if(i === 32){// Space
         e.preventDefault();
         add_split();
 
-    }else if(i === 27){/* ESC */
+    }else if(i === 27){// ESC
         stop();
 
     }else if(String.fromCharCode(i) === get('start-key').value){
