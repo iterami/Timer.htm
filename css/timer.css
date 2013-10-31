@@ -23,7 +23,5 @@ input{
     color: #aaa;
     font-size: 100%;
     text-align: center;
-}
-input[type=button]{
-    cursor: pointer;
+    width: 75px;
 }
