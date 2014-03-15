@@ -1,20 +1,20 @@
 function add_split(){
     if(interval != 0){
         calculate_time();
-        get('splits').innerHTML += current_time[0] + ':'
-                                 + current_time[1] + ':'
-                                 + current_time[2] + '.'
-                                 + current_time[3] + '<br>';
+        document.getElementById('splits').innerHTML += current_time[0] + ':'
+          + current_time[1] + ':'
+          + current_time[2] + '.'
+          + current_time[3] + '<br>';
     }
 }
 
 function calculate_time(){
     time_ms = new Date().getTime() - start_time;
     current_time = [
-        Math.floor(time_ms / 3600000),// hours
-        Math.floor(time_ms / 60000) % 60,// minutes
-        Math.floor(time_ms / 1000) % 60,// seconds
-        time_ms % 1000// milliseconds
+      Math.floor(time_ms / 3600000),// hours
+      Math.floor(time_ms / 60000) % 60,// minutes
+      Math.floor(time_ms / 1000) % 60,// seconds
+      time_ms % 1000// milliseconds
     ];
 
     // extra zero for minutes?
@@ -37,35 +37,31 @@ function calculate_time(){
 
 function draw(){
     calculate_time();
-    get(0).innerHTML = current_time[0];
-    get(1).innerHTML = current_time[1];
-    get(2).innerHTML = current_time[2];
-    get(3).innerHTML = current_time[3];
-}
-
-function get(i){
-    return document.getElementById(i);
+    document.getElementById(0).innerHTML = current_time[0];
+    document.getElementById(1).innerHTML = current_time[1];
+    document.getElementById(2).innerHTML = current_time[2];
+    document.getElementById(3).innerHTML = current_time[3];
 }
 
 function reset_timer(){
     if(confirm('Clear splits and reset timer?')){
         stop();
         start_time = -1;
-        get(0).innerHTML = 0;
-        get(1).innerHTML = '00';
-        get(2).innerHTML = '00';
-        get(3).innerHTML = '000';
-        get('splits').innerHTML = '';
+        document.getElementById(0).innerHTML = 0;
+        document.getElementById(1).innerHTML = '00';
+        document.getElementById(2).innerHTML = '00';
+        document.getElementById(3).innerHTML = '000';
+        document.getElementById('splits').innerHTML = '';
     }
 }
 
 function reset_settings(){
     if(confirm('Reset settings?')){
-        get('start-key').value = 'H';
-        get('start-key-display').innerHTML = 'H';
+        document.getElementById('start-key').value = 'H';
+        document.getElementById('start-key-display').innerHTML = 'H';
 
-        get('reset-key').value = 'T';
-        get('reset-key-display').innerHTML = 'T';
+        document.getElementById('reset-key').value = 'T';
+        document.getElementById('reset-key-display').innerHTML = 'T';
 
         save();
     }
@@ -74,24 +70,28 @@ function reset_settings(){
 function save(){
     i = 1;
     do{
-        if(get(['start-key','reset-key'][i]).value == ['H', 'T'][i]){
-            ls.removeItem('timer' + i);
+        if(document.getElementById(['start-key','reset-key'][i]).value == ['H', 'T'][i]){
+            window.localStorage.removeItem('timer' + i);
 
         }else{
-            ls.setItem(
-                'timer' + i,
-                get(['start-key','reset-key'][i]).value
+            window.localStorage.setItem(
+              'timer' + i,
+              document.getElementById(['start-key','reset-key'][i]).value
             );
         }
     }while(i--);
 
-    get('reset-key-display').innerHTML = get('reset-key').value;
-    get('start-key-display').innerHTML = get('start-key').value;
+    document.getElementById('reset-key-display').innerHTML = document.getElementById('reset-key').value;
+    document.getElementById('start-key-display').innerHTML = document.getElementById('start-key').value;
 }
 
 function showhide(){
-    get('controls').style.display = get('controls').style.display === 'none' ? 'inline' : 'none';
-    get('settings').style.display = get('controls').style.display === 'none' ? 'inline' : 'none';
+    document.getElementById('controls').style.display = document.getElementById('controls').style.display === 'none'
+      ? 'inline'
+      : 'none';
+    document.getElementById('settings').style.display = document.getElementById('settings').style.display === 'none'
+      ? 'inline'
+      : 'none';
 }
 
 function start(){
@@ -108,26 +108,25 @@ function stop(){
 var current_time = 0;
 var i = 0;
 var interval = 0;
-var ls = window.localStorage;
 var start_time = -1;
 var time_ms = 0;
 
 // fetch start key from localStorage
-if(ls.getItem('timer0')){
-    get('start-key').value = ls.getItem('timer0');
-    get('start-key-display').innerHTML = ls.getItem('timer0');
+if(window.localStorage.getItem('timer0')){
+    document.getElementById('start-key').value = window.localStorage.getItem('timer0');
+    document.getElementById('start-key-display').innerHTML = window.localStorage.getItem('timer0');
 
 }else{
-    get('start-key').value = 'H';
+    document.getElementById('start-key').value = 'H';
 }
 
 // fetch reset key from localStorage
-if(ls.getItem('timer1')){
-    get('reset-key').value = ls.getItem('timer1');
-    get('reset-key-display').innerHTML = ls.getItem('timer1');
+if(window.localStorage.getItem('timer1')){
+    document.getElementById('reset-key').value = window.localStorage.getItem('timer1');
+    document.getElementById('reset-key-display').innerHTML = window.localStorage.getItem('timer1');
 
 }else{
-    get('reset-key').value = 'T';
+    document.getElementById('reset-key').value = 'T';
 }
 
 window.onbeforeunload = function(){
@@ -147,10 +146,10 @@ window.onkeydown = function(e){
     }else if(i === 27){// ESC
         stop();
 
-    }else if(String.fromCharCode(i) === get('start-key').value){
+    }else if(String.fromCharCode(i) === document.getElementById('start-key').value){
         start();
 
-    }else if(String.fromCharCode(i) === get('reset-key').value){
+    }else if(String.fromCharCode(i) === document.getElementById('reset-key').value){
         reset_timer();
     }
 }
