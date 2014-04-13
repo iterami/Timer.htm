@@ -13,10 +13,10 @@
 
 <br>
 <span id=controls>
-    <a onclick=start()>Start [<span id=start-key-display>H</span>]</a>
-    <a onclick=add_split() style=font-size:150%>Split [space]</a>
-    <a onclick=stop()>Stop [ESC]</a>
-    <a onclick=reset_timer()>Reset [<span id=reset-key-display>T</span>]</a>
+    <input id=start-key-display onclick=start() type=button value="Start [H]">
+    <input onclick=add_split() style=font-size:150% type=button value="Split [space]">
+    <input onclick=stop() type=button value="Stop [ESC]">
+    <input id=reset-key-display onclick=reset_timer() type=button value="Reset [T]">
     <br><br>
 </span>
 
@@ -30,10 +30,6 @@
     Split: <input disabled style=border:0 value=Space><br>
     Stop: <input disabled style=border:0 value=ESC><br>
     Reset: <input id=reset-key maxlength=1 value=T>
-    <br><br>
-    Split settings go here<br>
-    Title customization goes here<br>
-    CSS customization goes here
 </span>
 
 <script src=js/timer.js></script>

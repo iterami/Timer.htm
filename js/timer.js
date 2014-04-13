@@ -58,10 +58,10 @@ function reset_timer(){
 function reset_settings(){
     if(confirm('Reset settings?')){
         document.getElementById('start-key').value = 'H';
-        document.getElementById('start-key-display').innerHTML = 'H';
+        document.getElementById('start-key-display').value = 'Start [H]';
 
         document.getElementById('reset-key').value = 'T';
-        document.getElementById('reset-key-display').innerHTML = 'T';
+        document.getElementById('reset-key-display').value = 'Reset [T]';
 
         save();
     }
@@ -81,8 +81,8 @@ function save(){
         }
     }while(i--);
 
-    document.getElementById('reset-key-display').innerHTML = document.getElementById('reset-key').value;
-    document.getElementById('start-key-display').innerHTML = document.getElementById('start-key').value;
+    document.getElementById('reset-key-display').value = 'Reset [' + document.getElementById('reset-key').value + ']';
+    document.getElementById('start-key-display').value = 'Start [' + document.getElementById('start-key').value + ']';
 }
 
 function showhide(){
@@ -114,7 +114,7 @@ var time_ms = 0;
 // fetch start key from localStorage
 if(window.localStorage.getItem('timer0')){
     document.getElementById('start-key').value = window.localStorage.getItem('timer0');
-    document.getElementById('start-key-display').innerHTML = window.localStorage.getItem('timer0');
+    document.getElementById('start-key-display').value = 'Start [' + window.localStorage.getItem('timer0') + ']';
 
 }else{
     document.getElementById('start-key').value = 'H';
@@ -123,7 +123,7 @@ if(window.localStorage.getItem('timer0')){
 // fetch reset key from localStorage
 if(window.localStorage.getItem('timer1')){
     document.getElementById('reset-key').value = window.localStorage.getItem('timer1');
-    document.getElementById('reset-key-display').innerHTML = window.localStorage.getItem('timer1');
+    document.getElementById('reset-key-display').value = 'Reset [' + window.localStorage.getItem('timer1') + ']';
 
 }else{
     document.getElementById('reset-key').value = 'T';
