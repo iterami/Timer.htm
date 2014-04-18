@@ -136,20 +136,24 @@ window.onbeforeunload = function(){
 };
 
 window.onkeydown = function(e){
-    i = window.event ? event : e;
-    i = i.charCode ? i.charCode : i.keyCode;
+    var key = window.event ? event : e;
+    key = key.charCode ? key.charCode : key.keyCode;
 
-    if(i === 32){// Space
+    if(key === 32){// Space
         e.preventDefault();
         add_split();
 
-    }else if(i === 27){// ESC
+    }else if(key === 27){// ESC
         stop();
 
-    }else if(String.fromCharCode(i) === document.getElementById('start-key').value){
-        start();
+    }else{
+        key = String.fromCharCode(key);
 
-    }else if(String.fromCharCode(i) === document.getElementById('reset-key').value){
-        reset_timer();
+        if(key === document.getElementById('start-key').value){
+            start();
+
+        }else if(key === document.getElementById('reset-key').value){
+            reset_timer();
+        }
     }
 }
