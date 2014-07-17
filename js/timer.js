@@ -30,6 +30,7 @@ function calculate_time(){
     // extra zeros for milliseconds?
     if(current_time[3] < 10){
         current_time[3] = '00' + current_time[3];
+
     }else if(current_time[3] < 100){
         current_time[3] = '0' + current_time[3];
     }
@@ -46,7 +47,9 @@ function draw(){
 function reset_timer(){
     if(confirm('Clear splits and reset timer?')){
         stop();
+
         start_time = -1;
+
         document.getElementById(0).innerHTML = 0;
         document.getElementById(1).innerHTML = '00';
         document.getElementById(2).innerHTML = '00';
@@ -68,21 +71,24 @@ function reset_settings(){
 }
 
 function save(){
-    i = 1;
+    var loop_counter = 1;
     do{
-        if(document.getElementById(['start-key','reset-key'][i]).value == ['H', 'T'][i]){
-            window.localStorage.removeItem('timer' + i);
+        if(document.getElementById(['start-key','reset-key'][loop_counter]).value ==
+          ['H', 'T'][loop_counter]){
+            window.localStorage.removeItem('timer' + loop_counter);
 
         }else{
             window.localStorage.setItem(
-              'timer' + i,
-              document.getElementById(['start-key','reset-key'][i]).value
+              'timer' + loop_counter,
+              document.getElementById(['start-key','reset-key'][loop_counter]).value
             );
         }
-    }while(i--);
+    }while(loop_counter--);
 
-    document.getElementById('reset-key-display').value = 'Reset [' + document.getElementById('reset-key').value + ']';
-    document.getElementById('start-key-display').value = 'Start [' + document.getElementById('start-key').value + ']';
+    document.getElementById('reset-key-display').value =
+      'Reset [' + document.getElementById('reset-key').value + ']';
+    document.getElementById('start-key-display').value =
+      'Start [' + document.getElementById('start-key').value + ']';
 }
 
 function showhide(){
@@ -97,7 +103,10 @@ function showhide(){
 function start(){
     stop();
     start_time = new Date().getTime() - (start_time === -1 ? 0 : time_ms);
-    interval = setInterval('draw()', 20);
+    interval = setInterval(
+      'draw()',
+      20
+    );
 }
 
 function stop(){
@@ -106,7 +115,6 @@ function stop(){
 }
 
 var current_time = 0;
-var i = 0;
 var interval = 0;
 var start_time = -1;
 var time_ms = 0;
@@ -114,7 +122,8 @@ var time_ms = 0;
 // fetch start key from localStorage
 if(window.localStorage.getItem('timer0')){
     document.getElementById('start-key').value = window.localStorage.getItem('timer0');
-    document.getElementById('start-key-display').value = 'Start [' + window.localStorage.getItem('timer0') + ']';
+    document.getElementById('start-key-display').value =
+      'Start [' + window.localStorage.getItem('timer0') + ']';
 
 }else{
     document.getElementById('start-key').value = 'H';
@@ -123,7 +132,8 @@ if(window.localStorage.getItem('timer0')){
 // fetch reset key from localStorage
 if(window.localStorage.getItem('timer1')){
     document.getElementById('reset-key').value = window.localStorage.getItem('timer1');
-    document.getElementById('reset-key-display').value = 'Reset [' + window.localStorage.getItem('timer1') + ']';
+    document.getElementById('reset-key-display').value =
+      'Reset [' + window.localStorage.getItem('timer1') + ']';
 
 }else{
     document.getElementById('reset-key').value = 'T';
