@@ -166,4 +166,4 @@ window.onkeydown = function(e){
             reset_timer();
         }
     }
-}
+};
