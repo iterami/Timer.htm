@@ -73,14 +73,16 @@ function reset_settings(){
 function save(){
     var loop_counter = 1;
     do{
-        if(document.getElementById(['start-key','reset-key'][loop_counter]).value ==
+        var id = ['start-key','reset-key'][loop_counter];
+
+        if(document.getElementById(id).value ==
           ['H', 'T'][loop_counter]){
-            window.localStorage.removeItem('timer' + loop_counter);
+            window.localStorage.removeItem('Timer.htm-' + id);
 
         }else{
             window.localStorage.setItem(
-              'timer' + loop_counter,
-              document.getElementById(['start-key','reset-key'][loop_counter]).value
+              'timer' + id,
+              document.getElementById(id).value
             );
         }
     }while(loop_counter--);
@@ -120,20 +122,20 @@ var start_time = -1;
 var time_ms = 0;
 
 // fetch start key from localStorage
-if(window.localStorage.getItem('timer0')){
-    document.getElementById('start-key').value = window.localStorage.getItem('timer0');
+if(window.localStorage.getItem('Timer.htm-start-key')){
+    document.getElementById('start-key').value = window.localStorage.getItem('Timer.htm-start-key');
     document.getElementById('start-key-display').value =
-      'Start [' + window.localStorage.getItem('timer0') + ']';
+      'Start [' + window.localStorage.getItem('Timer.htm-start-key') + ']';
 
 }else{
     document.getElementById('start-key').value = 'H';
 }
 
 // fetch reset key from localStorage
-if(window.localStorage.getItem('timer1')){
-    document.getElementById('reset-key').value = window.localStorage.getItem('timer1');
+if(window.localStorage.getItem('Timer.htm-reset-key')){
+    document.getElementById('reset-key').value = window.localStorage.getItem('Timer.htm-reset-key');
     document.getElementById('reset-key-display').value =
-      'Reset [' + window.localStorage.getItem('timer1') + ']';
+      'Reset [' + window.localStorage.getItem('Timer.htm-reset-key') + ']';
 
 }else{
     document.getElementById('reset-key').value = 'T';
