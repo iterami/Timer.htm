@@ -1,47 +1,46 @@
 function add_split(){
     if(interval != 0){
         calculate_time();
-        document.getElementById('splits').innerHTML += current_time[0] + ':'
-          + current_time[1] + ':'
-          + current_time[2] + '.'
-          + current_time[3] + '<br>';
+        document.getElementById('splits').innerHTML +=
+          current_time['hours'] + ':'
+          + current_time['minutes'] + ':'
+          + current_time['seconds'] + '.'
+          + current_time['milliseconds'] + '<br>';
     }
 }
 
 function calculate_time(){
     time_ms = new Date().getTime() - start_time;
-    current_time = [
-      Math.floor(time_ms / 3600000),// hours
-      Math.floor(time_ms / 60000) % 60,// minutes
-      Math.floor(time_ms / 1000) % 60,// seconds
-      time_ms % 1000// milliseconds
-    ];
+    current_time['hours'] = Math.floor(time_ms / 3600000);
+    current_time['minutes'] = Math.floor(time_ms / 60000) % 60;
+    current_time['seconds'] = Math.floor(time_ms / 1000) % 60;
+    current_time['milliseconds'] = time_ms % 1000;
 
-    // extra zero for minutes?
-    if(current_time[1] < 10){
-        current_time[1] = '0' + current_time[1];
+    // Extra zero for minutes?
+    if(current_time['minutes'] < 10){
+        current_time['minutes'] = '0' + current_time['minutes'];
     }
 
-    // extra zero for seconds?
-    if(current_time[2] < 10){
-        current_time[2] = '0' + current_time[2];
+    // Extra zero for seconds?
+    if(current_time['seconds'] < 10){
+        current_time['seconds'] = '0' + current_time['seconds'];
     }
 
-    // extra zeros for milliseconds?
-    if(current_time[3] < 10){
-        current_time[3] = '00' + current_time[3];
+    // Extra zero(s) for milliseconds?
+    if(current_time['milliseconds'] < 10){
+        current_time['milliseconds'] = '00' + current_time['milliseconds'];
 
-    }else if(current_time[3] < 100){
-        current_time[3] = '0' + current_time[3];
+    }else if(current_time['milliseconds'] < 100){
+        current_time['milliseconds'] = '0' + current_time['milliseconds'];
     }
 }
 
 function draw(){
     calculate_time();
-    document.getElementById(0).innerHTML = current_time[0];
-    document.getElementById(1).innerHTML = current_time[1];
-    document.getElementById(2).innerHTML = current_time[2];
-    document.getElementById(3).innerHTML = current_time[3];
+    document.getElementById('hours').innerHTML = current_time['hours'];
+    document.getElementById('minutes').innerHTML = current_time['minutes'];
+    document.getElementById('seconds').innerHTML = current_time['seconds'];
+    document.getElementById('milliseconds').innerHTML = current_time['milliseconds'];
 }
 
 function reset_timer(){
@@ -50,10 +49,11 @@ function reset_timer(){
 
         start_time = -1;
 
-        document.getElementById(0).innerHTML = 0;
-        document.getElementById(1).innerHTML = '00';
-        document.getElementById(2).innerHTML = '00';
-        document.getElementById(3).innerHTML = '000';
+        document.getElementById('hours').innerHTML = 0;
+        document.getElementById('minutes').innerHTML = '00';
+        document.getElementById('seconds').innerHTML = '00';
+        document.getElementById('milliseconds').innerHTML = '000';
+
         document.getElementById('splits').innerHTML = '';
     }
 }
@@ -73,10 +73,12 @@ function reset_settings(){
 function save(){
     var loop_counter = 1;
     do{
-        var id = ['start-key','reset-key'][loop_counter];
+        var id = [
+          'start-key',
+          'reset-key',
+        ][loop_counter];
 
-        if(document.getElementById(id).value ==
-          ['H', 'T'][loop_counter]){
+        if(document.getElementById(id).value == ['H', 'T'][loop_counter]){
             window.localStorage.removeItem('Timer.htm-' + id);
 
         }else{
@@ -94,12 +96,14 @@ function save(){
 }
 
 function showhide(){
-    document.getElementById('controls').style.display = document.getElementById('controls').style.display === 'none'
-      ? 'inline'
-      : 'none';
-    document.getElementById('settings').style.display = document.getElementById('settings').style.display === 'none'
-      ? 'inline'
-      : 'none';
+    document.getElementById('controls').style.display =
+      document.getElementById('controls').style.display === 'none'
+        ? 'inline'
+        : 'none';
+    document.getElementById('settings').style.display =
+      document.getElementById('settings').style.display === 'none'
+        ? 'inline'
+        : 'none';
 }
 
 function start(){
@@ -116,7 +120,12 @@ function stop(){
     interval = 0;
 }
 
-var current_time = 0;
+var current_time = {
+  'hours': 0,
+  'minutes': 0,
+  'seconds': 0,
+  'milliseconds': 0,
+};
 var interval = 0;
 var start_time = -1;
 var time_ms = 0;
