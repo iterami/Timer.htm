@@ -7,24 +7,24 @@
 
 <div>
     <b>
-        <span id=0>0</span>:<span id=1>00</span>:<span id=2>00</span><a onclick=showhide() style=margin:0;text-decoration:none>.</a><span id=3>000</span>
+        <span id=0>0</span>:<span id=1>00</span>:<span id=2>00</span><a class=dot onclick=showhide()>.</a><span id=3>000</span>
     </b>
 </div>
 
 <br>
 <span id=controls>
     <input id=start-key-display onclick=start() type=button value="Start [H]">
-    <input onclick=add_split() style=font-size:150% type=button value="Split [SPACE]">
+    <input onclick=add_split() type=button value="Split [SPACE]"><br>
     <input onclick=stop() type=button value="Stop [ESC]">
     <input id=reset-key-display onclick=reset_timer() type=button value="Reset [T]">
     <br><br>
 </span>
 
-<div id=splits style=font-size:150%></div>
+<div id=splits></div>
 
 <span id=settings>
     <br>
-    <a onclick=save() style=margin:0>Save Settings</a>
+    <a onclick=save()>Save Settings</a>
     <a onclick=reset_settings()>Reset Settings</a><br>
     Start: <input id=start-key maxlength=1 value=H><br>
     Split: <input disabled style=border:0 value=Space><br>
