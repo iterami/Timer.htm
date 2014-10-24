@@ -44,30 +44,34 @@ function draw(){
 }
 
 function reset_timer(){
-    if(confirm('Clear splits and reset timer?')){
-        stop();
-
-        start_time = -1;
-
-        document.getElementById('hours').innerHTML = 0;
-        document.getElementById('minutes').innerHTML = '00';
-        document.getElementById('seconds').innerHTML = '00';
-        document.getElementById('milliseconds').innerHTML = '000';
-
-        document.getElementById('splits').innerHTML = '';
+    if(!confirm('Clear splits and reset timer?')){
+        return;
     }
+
+    stop();
+
+    start_time = -1;
+
+    document.getElementById('hours').innerHTML = 0;
+    document.getElementById('minutes').innerHTML = '00';
+    document.getElementById('seconds').innerHTML = '00';
+    document.getElementById('milliseconds').innerHTML = '000';
+
+    document.getElementById('splits').innerHTML = '';
 }
 
 function reset_settings(){
-    if(confirm('Reset settings?')){
-        document.getElementById('start-key').value = 'H';
-        document.getElementById('start-key-display').value = 'Start [H]';
-
-        document.getElementById('reset-key').value = 'T';
-        document.getElementById('reset-key-display').value = 'Reset [T]';
-
-        save();
+    if(!confirm('Reset settings?')){
+        return;
     }
+
+    document.getElementById('start-key').value = 'H';
+    document.getElementById('start-key-display').value = 'Start [H]';
+
+    document.getElementById('reset-key').value = 'T';
+    document.getElementById('reset-key-display').value = 'Reset [T]';
+
+    save();
 }
 
 function save(){
@@ -78,7 +82,7 @@ function save(){
           'reset-key',
         ][loop_counter];
 
-        if(document.getElementById(id).value == ['H', 'T'][loop_counter]){
+        if(document.getElementById(id).value == ['H', 'T',][loop_counter]){
             window.localStorage.removeItem('Timer.htm-' + id);
 
         }else{
@@ -130,7 +134,7 @@ var interval = 0;
 var start_time = -1;
 var time_ms = 0;
 
-// fetch start key from localStorage
+// Fetch start key from window.localStorage.
 if(window.localStorage.getItem('Timer.htm-start-key')){
     document.getElementById('start-key').value = window.localStorage.getItem('Timer.htm-start-key');
     document.getElementById('start-key-display').value =
@@ -140,7 +144,7 @@ if(window.localStorage.getItem('Timer.htm-start-key')){
     document.getElementById('start-key').value = 'H';
 }
 
-// fetch reset key from localStorage
+// Fetch reset key from window.localStorage.
 if(window.localStorage.getItem('Timer.htm-reset-key')){
     document.getElementById('reset-key').value = window.localStorage.getItem('Timer.htm-reset-key');
     document.getElementById('reset-key-display').value =
@@ -160,11 +164,13 @@ window.onkeydown = function(e){
     var key = window.event ? event : e;
     key = key.charCode ? key.charCode : key.keyCode;
 
-    if(key === 32){// Space
+    // Space: add split.
+    if(key === 32){
         e.preventDefault();
         add_split();
 
-    }else if(key === 27){// ESC
+    // ESC: stop timer.
+    }else if(key === 27){
         stop();
 
     }else{
