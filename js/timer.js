@@ -161,8 +161,7 @@ window.onbeforeunload = function(){
 };
 
 window.onkeydown = function(e){
-    var key = window.event ? event : e;
-    key = key.charCode ? key.charCode : key.keyCode;
+    var key = e.keyCode || e.which;
 
     // Space: add split.
     if(key === 32){
