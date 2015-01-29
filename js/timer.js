@@ -1,12 +1,14 @@
 function add_split(){
-    if(interval != 0){
-        calculate_time();
-        document.getElementById('splits').innerHTML +=
-          current_time['hours'] + ':'
-          + current_time['minutes'] + ':'
-          + current_time['seconds'] + '.'
-          + current_time['milliseconds'] + '<br>';
+    if(!interval_running){
+        return;
     }
+
+    calculate_time();
+    document.getElementById('splits').innerHTML +=
+      current_time['hours'] + ':'
+      + current_time['minutes'] + ':'
+      + current_time['seconds'] + '.'
+      + current_time['milliseconds'] + '<br>';
 }
 
 function calculate_time(){
@@ -117,11 +119,12 @@ function start(){
       'draw()',
       20
     );
+    interval_running = true;
 }
 
 function stop(){
     clearInterval(interval);
-    interval = 0;
+    interval_running = false;
 }
 
 var current_time = {
@@ -131,32 +134,35 @@ var current_time = {
   'milliseconds': 0,
 };
 var interval = 0;
+var interval_running = false;
 var start_time = -1;
 var time_ms = 0;
-
-// Fetch start key from window.localStorage.
-if(window.localStorage.getItem('Timer.htm-start-key')){
-    document.getElementById('start-key').value = window.localStorage.getItem('Timer.htm-start-key');
-    document.getElementById('start-key-display').value =
-      'Start [' + window.localStorage.getItem('Timer.htm-start-key') + ']';
-
-}else{
-    document.getElementById('start-key').value = 'H';
-}
-
-// Fetch reset key from window.localStorage.
-if(window.localStorage.getItem('Timer.htm-reset-key')){
-    document.getElementById('reset-key').value = window.localStorage.getItem('Timer.htm-reset-key');
-    document.getElementById('reset-key-display').value =
-      'Reset [' + window.localStorage.getItem('Timer.htm-reset-key') + ']';
-
-}else{
-    document.getElementById('reset-key').value = 'T';
-}
 
 window.onbeforeunload = function(){
     if(start_time > -1){
         return 'Timer and splits not yet saveable. Leave?';
+    }
+};
+
+window.onload = function(e){
+    // Fetch start key from window.localStorage.
+    if(window.localStorage.getItem('Timer.htm-start-key')){
+        document.getElementById('start-key').value = window.localStorage.getItem('Timer.htm-start-key');
+        document.getElementById('start-key-display').value =
+          'Start [' + window.localStorage.getItem('Timer.htm-start-key') + ']';
+
+    }else{
+        document.getElementById('start-key').value = 'H';
+    }
+
+    // Fetch reset key from window.localStorage.
+    if(window.localStorage.getItem('Timer.htm-reset-key')){
+        document.getElementById('reset-key').value = window.localStorage.getItem('Timer.htm-reset-key');
+        document.getElementById('reset-key-display').value =
+          'Reset [' + window.localStorage.getItem('Timer.htm-reset-key') + ']';
+
+    }else{
+        document.getElementById('reset-key').value = 'T';
     }
 };
 
