@@ -101,7 +101,7 @@ function save(){
       'Start [' + document.getElementById('start-key').value + ']';
 }
 
-function showhide(){
+function settings_toggle(){
     document.getElementById('controls').style.display =
       document.getElementById('controls').style.display === 'none'
         ? 'inline'
