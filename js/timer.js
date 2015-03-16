@@ -76,15 +76,14 @@ function reset_settings(){
     save();
 }
 
+// Save settings into window.localStorage if they differ from default.
 function save(){
-    var loop_counter = 1;
-    do{
-        var id = [
-          'start-key',
-          'reset-key',
-        ][loop_counter];
-
-        if(document.getElementById(id).value == ['H', 'T',][loop_counter]){
+    var ids = {
+      'start-key': 'H',
+      'reset-key': 'T',
+    };
+    for(var id in ids){
+        if(document.getElementById(id).value == ids[id]){
             window.localStorage.removeItem('Timer.htm-' + id);
 
         }else{
@@ -93,8 +92,9 @@ function save(){
               document.getElementById(id).value
             );
         }
-    }while(loop_counter--);
+    }
 
+    // Update button labels.
     document.getElementById('reset-key-display').value =
       'Reset [' + document.getElementById('reset-key').value + ']';
     document.getElementById('start-key-display').value =
