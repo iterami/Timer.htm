@@ -46,7 +46,7 @@ function draw(){
 }
 
 function reset_timer(){
-    if(!confirm('Clear splits and reset timer?')){
+    if(!window.confirm('Clear splits and reset timer?')){
         return;
     }
 
@@ -63,7 +63,7 @@ function reset_timer(){
 }
 
 function reset_settings(){
-    if(!confirm('Reset settings?')){
+    if(!window.confirm('Reset settings?')){
         return;
     }
 
