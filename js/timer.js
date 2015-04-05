@@ -101,13 +101,17 @@ function save(){
       'Start [' + document.getElementById('start-key').value + ']';
 }
 
-function settings_toggle(){
+function settings_toggle(state){
+    state = state == undefined
+      ? document.getElementById('controls').style.display === 'none'
+      : state;
+
     document.getElementById('controls').style.display =
-      document.getElementById('controls').style.display === 'none'
+      state
         ? 'inline'
         : 'none';
     document.getElementById('settings').style.display =
-      document.getElementById('settings').style.display === 'none'
+      state
         ? 'inline'
         : 'none';
 }
@@ -177,6 +181,14 @@ window.onkeydown = function(e){
     // ESC: stop timer.
     }else if(key === 27){
         stop();
+
+    // +: show settings.
+    }else if(key === 187){
+        settings_toggle(true);
+
+    // -: hide settings.
+    }else if(key === 189){
+        settings_toggle(false);
 
     }else{
         key = String.fromCharCode(key);
