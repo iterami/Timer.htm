@@ -27,6 +27,9 @@ input{
     font-size: 100%;
     text-align: center;
 }
+input[type=button]{
+    cursor: pointer;
+}
 #splits{
     font-size: 150%;
 }
