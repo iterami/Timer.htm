@@ -30,6 +30,9 @@ input{
 input[type=button]{
     cursor: pointer;
 }
+input[disabled]{
+    border: 0;
+}
 #splits{
     font-size: 150%;
 }
