@@ -1,3 +1,5 @@
+'use strict';
+
 function add_split(){
     if(!interval_running){
         return;
