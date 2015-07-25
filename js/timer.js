@@ -85,7 +85,7 @@ function save(){
       'reset-key': 'T',
     };
     for(var id in ids){
-        if(document.getElementById(id).value == ids[id]){
+        if(document.getElementById(id).value === ids[id]){
             window.localStorage.removeItem('Timer.htm-' + id);
 
         }else{
@@ -151,6 +151,16 @@ window.onbeforeunload = function(){
 };
 
 window.onload = function(e){
+    // Fetch reset key from window.localStorage.
+    if(window.localStorage.getItem('Timer.htm-reset-key')){
+        document.getElementById('reset-key').value = window.localStorage.getItem('Timer.htm-reset-key');
+        document.getElementById('reset-key-display').value =
+          'Reset [' + window.localStorage.getItem('Timer.htm-reset-key') + ']';
+
+    }else{
+        document.getElementById('reset-key').value = 'T';
+    }
+
     // Fetch start key from window.localStorage.
     if(window.localStorage.getItem('Timer.htm-start-key')){
         document.getElementById('start-key').value = window.localStorage.getItem('Timer.htm-start-key');
@@ -161,15 +171,9 @@ window.onload = function(e){
         document.getElementById('start-key').value = 'H';
     }
 
-    // Fetch reset key from window.localStorage.
-    if(window.localStorage.getItem('Timer.htm-reset-key')){
-        document.getElementById('reset-key').value = window.localStorage.getItem('Timer.htm-reset-key');
-        document.getElementById('reset-key-display').value =
-          'Reset [' + window.localStorage.getItem('Timer.htm-reset-key') + ']';
-
-    }else{
-        document.getElementById('reset-key').value = 'T';
-    }
+    // Make settings save when settings inputs are updated.
+    document.getElementById('reset-key').oninput
+      = document.getElementById('start-key').oninput = save;
 };
 
 window.onkeydown = function(e){
