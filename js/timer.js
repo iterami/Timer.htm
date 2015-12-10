@@ -85,13 +85,14 @@ function save(){
       'reset-key': 'T',
     };
     for(var id in ids){
-        if(document.getElementById(id).value === ids[id]){
+        var value = document.getElementById(id).value;
+        if(value === ids[id]){
             window.localStorage.removeItem('Timer.htm-' + id);
 
         }else{
             window.localStorage.setItem(
-              'timer' + id,
-              document.getElementById(id).value
+              'Timer.htm-' + id,
+              value
             );
         }
     }
