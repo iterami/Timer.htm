@@ -41,10 +41,15 @@ function calculate_time(){
 
 function draw(){
     calculate_time();
-    document.getElementById('hours').innerHTML = current_time['hours'];
-    document.getElementById('minutes').innerHTML = current_time['minutes'];
-    document.getElementById('seconds').innerHTML = current_time['seconds'];
-    document.getElementById('milliseconds').innerHTML = current_time['milliseconds'];
+    var ids = (
+      'hours',
+      'milliseconds',
+      'minutes',
+      'seconds',
+    );
+    for(var id in ids){
+        document.getElementById(ids[id]).innerHTML = current_time[ids[id]];
+    }
 }
 
 function reset_timer(){
@@ -56,12 +61,16 @@ function reset_timer(){
 
     start_time = -1;
 
-    document.getElementById('hours').innerHTML = 0;
-    document.getElementById('minutes').innerHTML = '00';
-    document.getElementById('seconds').innerHTML = '00';
-    document.getElementById('milliseconds').innerHTML = '000';
-
-    document.getElementById('splits').innerHTML = '';
+    var ids = {
+      'hours': 0,
+      'milliseconds': 0,
+      'minutes': 0,
+      'seconds': 0,
+      'splits': 0,
+    };
+    for(var id in ids){
+        document.getElementById(id).innerHTML = ids[id];
+    }
 }
 
 function reset_settings(){
@@ -69,11 +78,15 @@ function reset_settings(){
         return;
     }
 
-    document.getElementById('start-key').value = 'H';
-    document.getElementById('start-key-display').value = 'Start [H]';
-
-    document.getElementById('reset-key').value = 'T';
-    document.getElementById('reset-key-display').value = 'Reset [T]';
+    var ids = {
+      'reset-key': 'T',
+      'reset-key-display': 'Reset [T]',
+      'start-key': 'H',
+      'start-key-display': 'Start [H]',
+    };
+    for(var id in ids){
+        document.getElementById(id).innerHTML = ids[id];
+    }
 
     save();
 }
