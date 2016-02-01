@@ -41,12 +41,12 @@ function calculate_time(){
 
 function draw(){
     calculate_time();
-    var ids = (
+    var ids = [
       'hours',
       'milliseconds',
       'minutes',
       'seconds',
-    );
+    ];
     for(var id in ids){
         document.getElementById(ids[id]).innerHTML = current_time[ids[id]];
     }
@@ -62,11 +62,11 @@ function reset_timer(){
     start_time = -1;
 
     var ids = {
-      'hours': 0,
-      'milliseconds': 0,
-      'minutes': 0,
-      'seconds': 0,
-      'splits': 0,
+      'hours': '0',
+      'milliseconds': '000',
+      'minutes': '00',
+      'seconds': '00',
+      'splits': '',
     };
     for(var id in ids){
         document.getElementById(id).innerHTML = ids[id];
@@ -136,7 +136,7 @@ function start(){
     stop();
     start_time = new Date().getTime() - (start_time === -1 ? 0 : time_ms);
     interval = setInterval(
-      'draw()',
+      draw,
       20
     );
     interval_running = true;
