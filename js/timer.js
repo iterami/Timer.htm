@@ -73,50 +73,6 @@ function reset_timer(){
     }
 }
 
-function reset_settings(){
-    if(!window.confirm('Reset settings?')){
-        return;
-    }
-
-    var ids = {
-      'reset-key': 'T',
-      'reset-key-display': 'Reset [T]',
-      'start-key': 'H',
-      'start-key-display': 'Start [H]',
-    };
-    for(var id in ids){
-        document.getElementById(id).innerHTML = ids[id];
-    }
-
-    save();
-}
-
-// Save settings into window.localStorage if they differ from default.
-function save(){
-    var ids = {
-      'start-key': 'H',
-      'reset-key': 'T',
-    };
-    for(var id in ids){
-        var value = document.getElementById(id).value;
-        if(value === ids[id]){
-            window.localStorage.removeItem('Timer.htm-' + id);
-
-        }else{
-            window.localStorage.setItem(
-              'Timer.htm-' + id,
-              value
-            );
-        }
-    }
-
-    // Update button labels.
-    document.getElementById('reset-key-display').value =
-      'Reset [' + document.getElementById('reset-key').value + ']';
-    document.getElementById('start-key-display').value =
-      'Start [' + document.getElementById('start-key').value + ']';
-}
-
 function settings_toggle(state){
     state = state == void 0
       ? document.getElementById('controls').style.display === 'none'
@@ -134,6 +90,9 @@ function settings_toggle(state){
 
 function start(){
     stop();
+    save();
+    document.getElementById('reset-key-display').value = 'Reset [' + settings['reset-key'] + ']';
+    document.getElementById('start-key-display').value = 'Start [' + settings['start-key'] + ']';
     start_time = new Date().getTime() - (start_time === -1 ? 0 : time_ms);
     interval = setInterval(
       draw,
@@ -164,32 +123,6 @@ window.onbeforeunload = function(){
     }
 };
 
-window.onload = function(e){
-    // Fetch reset key from window.localStorage.
-    if(window.localStorage.getItem('Timer.htm-reset-key')){
-        document.getElementById('reset-key').value = window.localStorage.getItem('Timer.htm-reset-key');
-        document.getElementById('reset-key-display').value =
-          'Reset [' + window.localStorage.getItem('Timer.htm-reset-key') + ']';
-
-    }else{
-        document.getElementById('reset-key').value = 'T';
-    }
-
-    // Fetch start key from window.localStorage.
-    if(window.localStorage.getItem('Timer.htm-start-key')){
-        document.getElementById('start-key').value = window.localStorage.getItem('Timer.htm-start-key');
-        document.getElementById('start-key-display').value =
-          'Start [' + window.localStorage.getItem('Timer.htm-start-key') + ']';
-
-    }else{
-        document.getElementById('start-key').value = 'H';
-    }
-
-    // Make settings save when settings inputs are updated.
-    document.getElementById('reset-key').oninput
-      = document.getElementById('start-key').oninput = save;
-};
-
 window.onkeydown = function(e){
     var key = e.keyCode || e.which;
 
@@ -213,11 +146,30 @@ window.onkeydown = function(e){
     }else{
         key = String.fromCharCode(key);
 
-        if(key === document.getElementById('start-key').value){
+        if(key === settings['start-key']){
             start();
 
-        }else if(key === document.getElementById('reset-key').value){
+        }else if(key === settings['reset-key']){
             reset_timer();
         }
     }
+};
+
+window.onload = function(e){
+    init_settings(
+      'Timer.htm-',
+      {
+        'reset-key': 'T',
+        'start-key': 'H',
+      }
+    );
+
+    document.getElementById('settings').innerHTML =
+      'Start: <input id=start-key maxlength=1 value=' + settings['start-key'] + '><br>'
+        + 'Split: <input disabled value=Space><br>'
+        + 'Stop: <input disabled value=ESC><br>'
+        + 'Reset: <input id=reset-key maxlength=1 value=' + settings['reset-key'] + '><br>'
+        + '<a onclick=reset()>Reset Settings</a>';
+    document.getElementById('reset-key-display').value = 'Reset [' + settings['reset-key'] + ']';
+    document.getElementById('start-key-display').value = 'Start [' + settings['start-key'] + ']';
 };

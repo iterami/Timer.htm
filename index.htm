@@ -5,13 +5,11 @@
 <link href=css/timer.css rel=stylesheet>
 
 <span id=title></span>
-
 <div>
     <b>
         <span id=hours>0</span>:<span id=minutes>00</span>:<span id=seconds>00</span><a class=dot onclick=settings_toggle()>.</a><span id=milliseconds>000</span>
     </b>
 </div>
-
 <br>
 <span id=controls>
     <input id=start-key-display onclick=start() type=button value="Start [H]">
@@ -20,15 +18,8 @@
     <input id=reset-key-display onclick=reset_timer() type=button value="Reset [T]">
     <br><br>
 </span>
-
 <div id=splits></div>
+<span id=settings></span>
 
-<span id=settings>
-    Start: <input id=start-key maxlength=1 value=H><br>
-    Split: <input disabled value=Space><br>
-    Stop: <input disabled value=ESC><br>
-    Reset: <input id=reset-key maxlength=1 value=T><br>
-    <a onclick=reset_settings()>Reset Settings</a>
-</span>
-
+<script src=../common/js/settings.js></script>
 <script src=js/timer.js></script>

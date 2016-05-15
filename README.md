@@ -13,3 +13,8 @@ Show UI     | +
 Split       | Space
 Start Timer | H
 Stop Timer  | ESC
+
+---
+
+Requires:
+* [iterami/common](https://github.com/iterami/common)
