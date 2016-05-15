@@ -165,11 +165,12 @@ window.onload = function(e){
     );
 
     document.getElementById('settings').innerHTML =
-      'Start: <input id=start-key maxlength=1 value=' + settings['start-key'] + '><br>'
+      'Start: <input id=start-key maxlength=1><br>'
         + 'Split: <input disabled value=Space><br>'
         + 'Stop: <input disabled value=ESC><br>'
-        + 'Reset: <input id=reset-key maxlength=1 value=' + settings['reset-key'] + '><br>'
+        + 'Reset: <input id=reset-key maxlength=1><br>'
         + '<a onclick=reset()>Reset Settings</a>';
+    update_settings();
     document.getElementById('reset-key-display').value = 'Reset [' + settings['reset-key'] + ']';
     document.getElementById('start-key-display').value = 'Start [' + settings['start-key'] + ']';
 };
