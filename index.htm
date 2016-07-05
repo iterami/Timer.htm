@@ -2,12 +2,12 @@
 <meta charset=utf-8>
 <meta content="width=device-width,initial-scale=1" name=viewport>
 <title>Timer.htm</title>
-<link href=css/timer.css rel=stylesheet>
+<link href=../common/css/dom.css rel=stylesheet>
 
 <span id=title></span>
-<div>
+<div class=big>
     <b>
-        <span id=hours>0</span>:<span id=minutes>00</span>:<span id=seconds>00</span><a class=dot onclick=settings_toggle()>.</a><span id=milliseconds>000</span>
+        <span id=hours>0</span>:<span id=minutes>00</span>:<span id=seconds>00</span><a onclick=settings_toggle()>.</a><span id=milliseconds>000</span>
     </b>
 </div>
 <br>
@@ -18,7 +18,7 @@
     <input id=reset-key-display onclick=reset_timer() type=button value="Reset [T]">
     <br><br>
 </span>
-<div id=splits></div>
+<div class=medium id=splits></div>
 <span id=settings></span>
 
 <script src=../common/js/settings.js></script>
