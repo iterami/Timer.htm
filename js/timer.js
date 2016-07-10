@@ -90,9 +90,9 @@ function settings_toggle(state){
 
 function start(){
     stop();
-    save();
-    document.getElementById('reset-key-display').value = 'Reset [' + settings['reset-key'] + ']';
-    document.getElementById('start-key-display').value = 'Start [' + settings['start-key'] + ']';
+    settings_save();
+    document.getElementById('reset-key-display').value = 'Reset [' + settings_settings['reset-key'] + ']';
+    document.getElementById('start-key-display').value = 'Start [' + settings_settings['start-key'] + ']';
     start_time = new Date().getTime() - (start_time === -1 ? 0 : time_ms);
     interval = setInterval(
       draw,
@@ -146,17 +146,17 @@ window.onkeydown = function(e){
     }else{
         key = String.fromCharCode(key);
 
-        if(key === settings['start-key']){
+        if(key === settings_settings['start-key']){
             start();
 
-        }else if(key === settings['reset-key']){
+        }else if(key === settings_settings['reset-key']){
             reset_timer();
         }
     }
 };
 
 window.onload = function(e){
-    init_settings(
+    settings_init(
       'Timer.htm-',
       {
         'reset-key': 'T',
@@ -169,8 +169,8 @@ window.onload = function(e){
         + 'Split: <input disabled value=Space><br>'
         + 'Stop: <input disabled value=ESC><br>'
         + 'Reset: <input id=reset-key maxlength=1><br>'
-        + '<a onclick=reset()>Reset Settings</a>';
-    update_settings();
-    document.getElementById('reset-key-display').value = 'Reset [' + settings['reset-key'] + ']';
-    document.getElementById('start-key-display').value = 'Start [' + settings['start-key'] + ']';
+        + '<a onclick=settings_reset()>Reset Settings</a>';
+    settings_update();
+    document.getElementById('reset-key-display').value = 'Reset [' + settings_settings['reset-key'] + ']';
+    document.getElementById('start-key-display').value = 'Start [' + settings_settings['start-key'] + ']';
 };
