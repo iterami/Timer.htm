@@ -31,11 +31,11 @@ function calculate_time(){
     }
 
     // Extra zero(s) for milliseconds?
-    if(current_time['milliseconds'] < 10){
-        current_time['milliseconds'] = '00' + current_time['milliseconds'];
-
-    }else if(current_time['milliseconds'] < 100){
+    if(current_time['milliseconds'] < 100){
         current_time['milliseconds'] = '0' + current_time['milliseconds'];
+        if(current_time['milliseconds'] < 10){
+            current_time['milliseconds'] = '0' + current_time['milliseconds'];
+        }
     }
 }
 
