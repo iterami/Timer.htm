@@ -7,15 +7,15 @@
 <span id=title></span>
 <div class="big nounderline">
     <b>
-        <span id=hours>0</span>:<span id=minutes>00</span>:<span id=seconds>00</span><a onclick=settings_toggle()>.</a><span id=milliseconds>000</span>
+        <span id=hours>0</span>:<span id=minutes>00</span>:<span id=seconds>00</span><a id=settings-toggle>.</a><span id=milliseconds>000</span>
     </b>
 </div>
 <br>
 <span id=controls>
-    <input id=start-key-display onclick=start() type=button value="Start [H]">
-    <input onclick=add_split() type=button value="Split [SPACE]"><br>
-    <input onclick=stop() type=button value="Stop [ESC]">
-    <input id=reset-key-display onclick=reset_timer() type=button value="Reset [T]">
+    <input id=start-key-display type=button value="Start [H]">
+    <input id=add-split type=button value="Split [SPACE]"><br>
+    <input id=stop type=button value="Stop [ESC]">
+    <input id=reset-key-display type=button value="Reset [T]">
     <br><br>
 </span>
 <div class=medium id=splits></div>

@@ -171,6 +171,14 @@ window.onload = function(e){
         + 'Reset: <input id=reset-key maxlength=1><br>'
         + '<a onclick=settings_reset()>Reset Settings</a>';
     settings_update();
+
+    document.getElementById('add-split').onclick = add_split;
+    document.getElementById('reset-key-display').onclick = reset_timer;
     document.getElementById('reset-key-display').value = 'Reset [' + settings_settings['reset-key'] + ']';
+    document.getElementById('settings-toggle').onclick = function(){
+        settings_toggle();
+    };
+    document.getElementById('start-key-display').onclick = start;
     document.getElementById('start-key-display').value = 'Start [' + settings_settings['start-key'] + ']';
+    document.getElementById('stop').onclick = stop;
 };
