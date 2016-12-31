@@ -156,13 +156,13 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(e){
-    settings_init(
-      'Timer.htm-',
-      {
+    settings_init({
+      'prefix': 'Timer.htm-',
+      'settings': {
         'reset-key': 'T',
         'start-key': 'H',
-      }
-    );
+      },
+    });
 
     document.getElementById('settings').innerHTML =
       'Start: <input id=start-key maxlength=1><br>'
