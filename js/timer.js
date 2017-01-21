@@ -117,44 +117,6 @@ var interval_running = false;
 var start_time = -1;
 var time_ms = 0;
 
-window.onbeforeunload = function(){
-    if(start_time > -1){
-        return 'Timer and splits not yet saveable. Leave?';
-    }
-};
-
-window.onkeydown = function(e){
-    var key = e.keyCode || e.which;
-
-    // Space: add split.
-    if(key === 32){
-        e.preventDefault();
-        add_split();
-
-    // ESC: stop timer.
-    }else if(key === 27){
-        stop();
-
-    // +: show settings.
-    }else if(key === 187){
-        settings_toggle(true);
-
-    // -: hide settings.
-    }else if(key === 189){
-        settings_toggle(false);
-
-    }else{
-        key = String.fromCharCode(key);
-
-        if(key === settings_settings['start-key']){
-            start();
-
-        }else if(key === settings_settings['reset-key']){
-            reset_timer();
-        }
-    }
-};
-
 window.onload = function(e){
     settings_init({
       'prefix': 'Timer.htm-',
@@ -181,4 +143,42 @@ window.onload = function(e){
     document.getElementById('start-key-display').onclick = start;
     document.getElementById('start-key-display').value = 'Start [' + settings_settings['start-key'] + ']';
     document.getElementById('stop').onclick = stop;
+
+    window.onbeforeunload = function(){
+        if(start_time > -1){
+            return 'Timer and splits not yet saveable. Leave?';
+        }
+    };
+
+    window.onkeydown = function(e){
+        var key = e.keyCode || e.which;
+
+        // Space: add split.
+        if(key === 32){
+            e.preventDefault();
+            add_split();
+
+        // ESC: stop timer.
+        }else if(key === 27){
+            stop();
+
+        // +: show settings.
+        }else if(key === 187){
+            settings_toggle(true);
+
+        // -: hide settings.
+        }else if(key === 189){
+            settings_toggle(false);
+
+        }else{
+            key = String.fromCharCode(key);
+
+            if(key === settings_settings['start-key']){
+                start();
+
+            }else if(key === settings_settings['reset-key']){
+                reset_timer();
+            }
+        }
+    };
 };
