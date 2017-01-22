@@ -90,9 +90,9 @@ function settings_toggle(state){
 
 function start(){
     stop();
-    settings_save();
-    document.getElementById('reset-key-display').value = 'Reset [' + settings_settings['reset-key'] + ']';
-    document.getElementById('start-key-display').value = 'Start [' + settings_settings['start-key'] + ']';
+    storage_save();
+    document.getElementById('reset-key-display').value = 'Reset [' + storage_data['reset-key'] + ']';
+    document.getElementById('start-key-display').value = 'Start [' + storage_data['start-key'] + ']';
     start_time = new Date().getTime() - (start_time === -1 ? 0 : time_ms);
     interval = setInterval(
       draw,
@@ -118,12 +118,12 @@ var start_time = -1;
 var time_ms = 0;
 
 window.onload = function(e){
-    settings_init({
-      'prefix': 'Timer.htm-',
-      'settings': {
+    storage_init({
+      'data': {
         'reset-key': 'T',
         'start-key': 'H',
       },
+      'prefix': 'Timer.htm-',
     });
 
     document.getElementById('settings').innerHTML =
@@ -131,17 +131,17 @@ window.onload = function(e){
         + 'Split: <input disabled value=Space><br>'
         + 'Stop: <input disabled value=ESC><br>'
         + 'Reset: <input id=reset-key maxlength=1><br>'
-        + '<a onclick=settings_reset()>Reset Settings</a>';
-    settings_update();
+        + '<a onclick=storage_reset()>Reset Settings</a>';
+    storage_update();
 
     document.getElementById('add-split').onclick = add_split;
     document.getElementById('reset-key-display').onclick = reset_timer;
-    document.getElementById('reset-key-display').value = 'Reset [' + settings_settings['reset-key'] + ']';
+    document.getElementById('reset-key-display').value = 'Reset [' + storage_data['reset-key'] + ']';
     document.getElementById('settings-toggle').onclick = function(){
         settings_toggle();
     };
     document.getElementById('start-key-display').onclick = start;
-    document.getElementById('start-key-display').value = 'Start [' + settings_settings['start-key'] + ']';
+    document.getElementById('start-key-display').value = 'Start [' + storage_data['start-key'] + ']';
     document.getElementById('stop').onclick = stop;
 
     window.onbeforeunload = function(){
@@ -173,10 +173,10 @@ window.onload = function(e){
         }else{
             key = String.fromCharCode(key);
 
-            if(key === settings_settings['start-key']){
+            if(key === storage_data['start-key']){
                 start();
 
-            }else if(key === settings_settings['reset-key']){
+            }else if(key === storage_data['reset-key']){
                 reset_timer();
             }
         }
