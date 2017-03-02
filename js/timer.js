@@ -14,7 +14,7 @@ function add_split(){
 }
 
 function calculate_time(){
-    time_ms = new Date().getTime() - start_time;
+    time_ms = time_date_to_timestamp() - start_time;
     current_time['hours'] = Math.floor(time_ms / 3600000);
     current_time['minutes'] = Math.floor(time_ms / 60000) % 60;
     current_time['seconds'] = Math.floor(time_ms / 1000) % 60;
@@ -93,7 +93,7 @@ function start(){
     storage_save();
     document.getElementById('reset-key-display').value = 'Reset [' + storage_data['reset-key'] + ']';
     document.getElementById('start-key-display').value = 'Start [' + storage_data['start-key'] + ']';
-    start_time = new Date().getTime() - (start_time === -1 ? 0 : time_ms);
+    start_time = time_date_to_timestamp() - (start_time === -1 ? 0 : time_ms);
     interval = setInterval(
       draw,
       20
