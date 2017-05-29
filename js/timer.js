@@ -52,6 +52,72 @@ function draw(){
     }
 }
 
+function repo_init(){
+    core_storage_init({
+      'data': {
+        'reset-key': 'T',
+        'start-key': 'H',
+      },
+      'prefix': 'Timer.htm-',
+    });
+
+    document.getElementById('settings').innerHTML =
+      'Start: <input id=start-key maxlength=1><br>'
+        + 'Split: <input disabled value=Space><br>'
+        + 'Stop: <input disabled value=ESC><br>'
+        + 'Reset: <input id=reset-key maxlength=1><br>'
+        + '<a onclick=core_storage_reset()>Reset Settings</a>';
+    core_storage_update();
+
+    document.getElementById('add-split').onclick = add_split;
+    document.getElementById('reset-key-display').onclick = reset_timer;
+    document.getElementById('reset-key-display').value = 'Reset [' + core_storage_data['reset-key'] + ']';
+    document.getElementById('settings-toggle').onclick = function(){
+        settings_toggle();
+    };
+    document.getElementById('start-key-display').onclick = start;
+    document.getElementById('start-key-display').value = 'Start [' + core_storage_data['start-key'] + ']';
+    document.getElementById('stop').onclick = stop;
+
+    window.onbeforeunload = function(){
+        if(start_time > -1){
+            return 'Timer and splits not yet saveable. Leave?';
+        }
+    };
+
+    window.onkeydown = function(e){
+        var key = e.keyCode || e.which;
+
+        // Space: add split.
+        if(key === 32){
+            e.preventDefault();
+            add_split();
+
+        // ESC: stop timer.
+        }else if(key === 27){
+            stop();
+
+        // +: show settings.
+        }else if(key === 187){
+            settings_toggle(true);
+
+        // -: hide settings.
+        }else if(key === 189){
+            settings_toggle(false);
+
+        }else{
+            key = String.fromCharCode(key);
+
+            if(key === core_storage_data['start-key']){
+                start();
+
+            }else if(key === core_storage_data['reset-key']){
+                reset_timer();
+            }
+        }
+    };
+}
+
 function reset_timer(){
     if(!window.confirm('Clear splits and reset timer?')){
         return;
@@ -116,69 +182,3 @@ var interval = 0;
 var interval_running = false;
 var start_time = -1;
 var time_ms = 0;
-
-window.onload = function(e){
-    core_storage_init({
-      'data': {
-        'reset-key': 'T',
-        'start-key': 'H',
-      },
-      'prefix': 'Timer.htm-',
-    });
-
-    document.getElementById('settings').innerHTML =
-      'Start: <input id=start-key maxlength=1><br>'
-        + 'Split: <input disabled value=Space><br>'
-        + 'Stop: <input disabled value=ESC><br>'
-        + 'Reset: <input id=reset-key maxlength=1><br>'
-        + '<a onclick=core_storage_reset()>Reset Settings</a>';
-    core_storage_update();
-
-    document.getElementById('add-split').onclick = add_split;
-    document.getElementById('reset-key-display').onclick = reset_timer;
-    document.getElementById('reset-key-display').value = 'Reset [' + core_storage_data['reset-key'] + ']';
-    document.getElementById('settings-toggle').onclick = function(){
-        settings_toggle();
-    };
-    document.getElementById('start-key-display').onclick = start;
-    document.getElementById('start-key-display').value = 'Start [' + core_storage_data['start-key'] + ']';
-    document.getElementById('stop').onclick = stop;
-
-    window.onbeforeunload = function(){
-        if(start_time > -1){
-            return 'Timer and splits not yet saveable. Leave?';
-        }
-    };
-
-    window.onkeydown = function(e){
-        var key = e.keyCode || e.which;
-
-        // Space: add split.
-        if(key === 32){
-            e.preventDefault();
-            add_split();
-
-        // ESC: stop timer.
-        }else if(key === 27){
-            stop();
-
-        // +: show settings.
-        }else if(key === 187){
-            settings_toggle(true);
-
-        // -: hide settings.
-        }else if(key === 189){
-            settings_toggle(false);
-
-        }else{
-            key = String.fromCharCode(key);
-
-            if(key === core_storage_data['start-key']){
-                start();
-
-            }else if(key === core_storage_data['reset-key']){
-                reset_timer();
-            }
-        }
-    };
-};
