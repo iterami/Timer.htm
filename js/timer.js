@@ -60,6 +60,15 @@ function repo_init(){
       },
       'prefix': 'Timer.htm-',
     });
+    core_input_binds_add({
+      'beforeunload': {
+        'todo': function(){
+            if(start_time > -1){
+                return 'Timer and splits not yet saveable. Leave?';
+            }
+        },
+      },
+    });
 
     document.getElementById('settings').innerHTML =
       'Start: <input id=start-key maxlength=1><br>'
@@ -78,12 +87,6 @@ function repo_init(){
     document.getElementById('start-key-display').onclick = start;
     document.getElementById('start-key-display').value = 'Start [' + core_storage_data['start-key'] + ']';
     document.getElementById('stop').onclick = stop;
-
-    window.onbeforeunload = function(){
-        if(start_time > -1){
-            return 'Timer and splits not yet saveable. Leave?';
-        }
-    };
 
     window.onkeydown = function(e){
         var key = e.keyCode || e.which;
