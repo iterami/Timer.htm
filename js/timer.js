@@ -60,7 +60,7 @@ function repo_init(){
       },
       'prefix': 'Timer.htm-',
     });
-    core_input_binds_add({
+    core_events_keyinfo({
       'beforeunload': {
         'todo': function(){
             if(start_time > -1){
