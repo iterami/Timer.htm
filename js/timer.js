@@ -53,12 +53,12 @@ function draw(){
 }
 
 function repo_init(){
-    core_storage_init({
-      'data': {
+    core_repo_init({
+      'storage': {
         'reset-key': 'T',
         'start-key': 'H',
       },
-      'prefix': 'Timer.htm-',
+      'title': 'Timer.htm',
     });
     core_events_keyinfo({
       'beforeunload': {
