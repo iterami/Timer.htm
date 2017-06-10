@@ -52,15 +52,12 @@ function draw(){
     }
 }
 
+function repo_escape(){
+    stop();
+}
+
 function repo_init(){
     core_repo_init({
-      'storage': {
-        'reset-key': 'T',
-        'start-key': 'H',
-      },
-      'title': 'Timer.htm',
-    });
-    core_events_keyinfo({
       'beforeunload': {
         'todo': function(){
             if(start_time > -1){
@@ -68,57 +65,45 @@ function repo_init(){
             }
         },
       },
+      'keybinds': {
+        32: {
+          'todo': add_split,
+        },
+        72: {
+          'todo': start,
+        },
+        84: {
+          'todo': reset_timer,
+        },
+        187: {
+          'todo': function(){
+              settings_toggle(true);
+          },
+        },
+        189: {
+          'todo': function(){
+              settings_toggle(false);
+          },
+        },
+      },
+      'title': 'Timer.htm',
     });
 
     document.getElementById('settings').innerHTML =
-      'Start: <input id=start-key maxlength=1><br>'
+      'Start: <input disabled value=H><br>'
         + 'Split: <input disabled value=Space><br>'
         + 'Stop: <input disabled value=ESC><br>'
-        + 'Reset: <input id=reset-key maxlength=1><br>'
-        + '<a onclick=core_storage_reset()>Reset Settings</a>';
-    core_storage_update();
+        + 'Reset: <input disabled value=T>';
 
     document.getElementById('add-split').onclick = add_split;
     document.getElementById('reset-key-display').onclick = reset_timer;
-    document.getElementById('reset-key-display').value = 'Reset [' + core_storage_data['reset-key'] + ']';
+    document.getElementById('reset-key-display').value = 'Reset [T]';
     document.getElementById('settings-toggle').onclick = function(){
         settings_toggle();
     };
     document.getElementById('start-key-display').onclick = start;
-    document.getElementById('start-key-display').value = 'Start [' + core_storage_data['start-key'] + ']';
+    document.getElementById('start-key-display').value = 'Start [H]';
     document.getElementById('stop').onclick = stop;
-
-    window.onkeydown = function(e){
-        var key = e.keyCode || e.which;
-
-        // Space: add split.
-        if(key === 32){
-            e.preventDefault();
-            add_split();
-
-        // ESC: stop timer.
-        }else if(key === 27){
-            stop();
-
-        // +: show settings.
-        }else if(key === 187){
-            settings_toggle(true);
-
-        // -: hide settings.
-        }else if(key === 189){
-            settings_toggle(false);
-
-        }else{
-            key = String.fromCharCode(key);
-
-            if(key === core_storage_data['start-key']){
-                start();
-
-            }else if(key === core_storage_data['reset-key']){
-                reset_timer();
-            }
-        }
-    };
 }
 
 function reset_timer(){
@@ -159,9 +144,8 @@ function settings_toggle(state){
 
 function start(){
     stop();
-    core_storage_save();
-    document.getElementById('reset-key-display').value = 'Reset [' + core_storage_data['reset-key'] + ']';
-    document.getElementById('start-key-display').value = 'Start [' + core_storage_data['start-key'] + ']';
+    document.getElementById('reset-key-display').value = 'Reset [T]';
+    document.getElementById('start-key-display').value = 'Start [H]';
     start_time = time_date_to_timestamp() - (start_time === -1 ? 0 : time_ms);
     interval = setInterval(
       draw,
