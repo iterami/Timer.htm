@@ -75,32 +75,14 @@ function repo_init(){
         84: {
           'todo': reset_timer,
         },
-        187: {
-          'todo': function(){
-              settings_toggle(true);
-          },
-        },
-        189: {
-          'todo': function(){
-              settings_toggle(false);
-          },
-        },
       },
+      'storage-menu': '<input disabled value=H>Start<br><input disabled value=Space>Split<br><input disabled value=ESC>Stop<br><input disabled value=T>Reset',
       'title': 'Timer.htm',
     });
-
-    document.getElementById('settings').innerHTML =
-      'Start: <input disabled value=H><br>'
-        + 'Split: <input disabled value=Space><br>'
-        + 'Stop: <input disabled value=ESC><br>'
-        + 'Reset: <input disabled value=T>';
 
     document.getElementById('add-split').onclick = add_split;
     document.getElementById('reset-key-display').onclick = reset_timer;
     document.getElementById('reset-key-display').value = 'Reset [T]';
-    document.getElementById('settings-toggle').onclick = function(){
-        settings_toggle();
-    };
     document.getElementById('start-key-display').onclick = start;
     document.getElementById('start-key-display').value = 'Start [H]';
     document.getElementById('stop').onclick = stop;
@@ -125,21 +107,6 @@ function reset_timer(){
     for(var id in ids){
         document.getElementById(id).innerHTML = ids[id];
     }
-}
-
-function settings_toggle(state){
-    state = state == void 0
-      ? document.getElementById('controls').style.display === 'none'
-      : state;
-
-    document.getElementById('controls').style.display =
-      state
-        ? 'inline'
-        : 'none';
-    document.getElementById('settings').style.display =
-      state
-        ? 'inline'
-        : 'none';
 }
 
 function start(){
