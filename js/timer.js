@@ -116,7 +116,7 @@ function start(){
     start_time = time_date_to_timestamp() - (start_time === -1 ? 0 : time_ms);
     interval = setInterval(
       draw,
-      20
+      core_storage_data['frame-ms']
     );
     interval_running = true;
 }
