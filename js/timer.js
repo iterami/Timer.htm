@@ -76,7 +76,6 @@ function repo_init(){
           'todo': reset_timer,
         },
       },
-      'storage-menu': '<input disabled value=H>Start<br><input disabled value=Space>Split<br><input disabled value=ESC>Stop<br><input disabled value=T>Reset',
       'title': 'Timer.htm',
     });
 
