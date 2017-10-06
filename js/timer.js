@@ -80,10 +80,12 @@ function repo_init(){
     });
 
     document.getElementById('add-split').onclick = add_split;
-    document.getElementById('reset-key-display').onclick = reset_timer;
-    document.getElementById('reset-key-display').value = 'Reset [T]';
-    document.getElementById('start-key-display').onclick = start;
-    document.getElementById('start-key-display').value = 'Start [H]';
+    var element = document.getElementById('reset-key-display');
+    element.onclick = reset_timer;
+    element.value = 'Reset [T]';
+    element = document.getElementById('start-key-display');
+    element.onclick = start;
+    element.value = 'Start [H]';
     document.getElementById('stop').onclick = stop;
 }
 
