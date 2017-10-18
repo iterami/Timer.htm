@@ -13,6 +13,14 @@ function repo_init(){
             }
         },
       },
+      'info-events': {
+        'add-split': {
+          'todo': add_split,
+        },
+        'stop': {
+          'todo': stop,
+        },
+      },
       'keybinds': {
         32: {
           'todo': add_split,
@@ -27,12 +35,10 @@ function repo_init(){
       'title': 'Timer.htm',
     });
 
-    document.getElementById('add-split').onclick = add_split;
     var element = document.getElementById('reset-key-display');
     element.onclick = reset_timer;
     element.value = 'Reset [T]';
     element = document.getElementById('start-key-display');
     element.onclick = start;
     element.value = 'Start [H]';
-    document.getElementById('stop').onclick = stop;
 }
