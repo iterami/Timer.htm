@@ -35,10 +35,18 @@ function repo_init(){
       'title': 'Timer.htm',
     });
 
-    var element = document.getElementById('reset-key-display');
-    element.onclick = reset_timer;
-    element.value = 'Reset [T]';
-    element = document.getElementById('start-key-display');
-    element.onclick = start;
-    element.value = 'Start [H]';
+    core_html_modify({
+      'id': 'reset-key-display',
+      'properties': {
+        'onclick': reset_timer,
+        'value': 'Reset [T]',
+      },
+    });
+    core_html_modify({
+      'id': 'start-key-display',
+      'properties': {
+        'onclick': start,
+        'value': 'Start [H]',
+      },
+    });
 }
