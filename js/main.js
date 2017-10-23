@@ -13,6 +13,18 @@ function repo_init(){
             }
         },
       },
+      'globals': {
+        'current_time': {
+          'hours': 0,
+          'minutes': 0,
+          'seconds': 0,
+          'milliseconds': 0,
+        },
+        'interval': 0,
+        'interval_running': false,
+        'start_time': -1,
+        'time_ms': 0,
+      },
       'info-events': {
         'add-split': {
           'todo': add_split,

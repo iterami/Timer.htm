@@ -89,14 +89,3 @@ function stop(){
     clearInterval(interval);
     interval_running = false;
 }
-
-var current_time = {
-  'hours': 0,
-  'minutes': 0,
-  'seconds': 0,
-  'milliseconds': 0,
-};
-var interval = 0;
-var interval_running = false;
-var start_time = -1;
-var time_ms = 0;
