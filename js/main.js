@@ -17,6 +17,12 @@ function repo_init(){
         'add-split': {
           'onclick': add_split,
         },
+        'reset-key-display': {
+          'onclick': reset_timer,
+        },
+        'start-key-display': {
+          'onclick': start,
+        },
         'stop': {
           'onclick': stop,
         },
@@ -45,20 +51,5 @@ function repo_init(){
         },
       },
       'title': 'Timer.htm',
-    });
-
-    core_html_modify({
-      'id': 'reset-key-display',
-      'properties': {
-        'onclick': reset_timer,
-        'value': 'Reset [T]',
-      },
-    });
-    core_html_modify({
-      'id': 'start-key-display',
-      'properties': {
-        'onclick': start,
-        'value': 'Start [H]',
-      },
     });
 }
