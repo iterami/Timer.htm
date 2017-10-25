@@ -13,6 +13,14 @@ function repo_init(){
             }
         },
       },
+      'events': {
+        'add-split': {
+          'onclick': add_split,
+        },
+        'stop': {
+          'onclick': stop,
+        },
+      },
       'globals': {
         'current_time': {
           'hours': 0,
@@ -24,14 +32,6 @@ function repo_init(){
         'interval_running': false,
         'start_time': -1,
         'time_ms': 0,
-      },
-      'info-events': {
-        'add-split': {
-          'todo': add_split,
-        },
-        'stop': {
-          'todo': stop,
-        },
       },
       'keybinds': {
         32: {
