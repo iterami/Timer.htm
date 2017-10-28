@@ -1,7 +1,7 @@
 'use strict';
 
 function add_split(){
-    if(!interval_running){
+    if(core_intervals['timer']['paused']){
         return;
     }
 
@@ -53,7 +53,8 @@ function draw(){
 }
 
 function reset_timer(){
-    if(!window.confirm('Clear splits and reset timer?')){
+    if(core_menu_open
+      || !window.confirm('Clear splits and reset timer?')){
         return;
     }
 
@@ -74,18 +75,16 @@ function reset_timer(){
 }
 
 function start(){
-    stop();
+    if(core_menu_open){
+        return;
+    }
+
     document.getElementById('reset-key-display').value = 'Reset [T]';
     document.getElementById('start-key-display').value = 'Start [H]';
     start_time = time_date_to_timestamp() - (start_time === -1 ? 0 : time_ms);
-    interval = setInterval(
-      draw,
-      core_storage_data['frame-ms']
-    );
-    interval_running = true;
+    core_interval_resume_all();
 }
 
 function stop(){
-    clearInterval(interval);
-    interval_running = false;
+    core_interval_pause_all();
 }

@@ -1,9 +1,5 @@
 'use strict';
 
-function repo_escape(){
-    stop();
-}
-
 function repo_init(){
     core_repo_init({
       'beforeunload': {
@@ -34,8 +30,6 @@ function repo_init(){
           'seconds': 0,
           'milliseconds': 0,
         },
-        'interval': 0,
-        'interval_running': false,
         'start_time': -1,
         'time_ms': 0,
       },
@@ -51,5 +45,11 @@ function repo_init(){
         },
       },
       'title': 'Timer.htm',
+    });
+
+    core_interval_modify({
+      'id': 'timer',
+      'paused': true,
+      'todo': draw,
     });
 }
