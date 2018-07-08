@@ -41,13 +41,13 @@ function calculate_time(){
 
 function draw(){
     calculate_time();
-    var ids = [
+    let ids = [
       'hours',
       'milliseconds',
       'minutes',
       'seconds',
     ];
-    for(var id in ids){
+    for(let id in ids){
         document.getElementById(ids[id]).innerHTML = current_time[ids[id]];
     }
 }
@@ -62,14 +62,14 @@ function reset_timer(){
 
     start_time = -1;
 
-    var ids = {
+    let ids = {
       'hours': '0',
       'milliseconds': '000',
       'minutes': '00',
       'seconds': '00',
       'splits': '',
     };
-    for(var id in ids){
+    for(let id in ids){
         document.getElementById(id).innerHTML = ids[id];
     }
 }
