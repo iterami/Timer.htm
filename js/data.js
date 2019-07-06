@@ -20,23 +20,17 @@ function calculate_time(){
     current_time['seconds'] = Math.floor(time_ms / 1000) % 60;
     current_time['milliseconds'] = time_ms % 1000;
 
-    // Extra zero for minutes?
-    if(current_time['minutes'] < 10){
-        current_time['minutes'] = '0' + current_time['minutes'];
-    }
-
-    // Extra zero for seconds?
-    if(current_time['seconds'] < 10){
-        current_time['seconds'] = '0' + current_time['seconds'];
-    }
-
-    // Extra zero(s) for milliseconds?
-    if(current_time['milliseconds'] < 100){
-        current_time['milliseconds'] = '0' + current_time['milliseconds'];
-        if(current_time['milliseconds'] < 10){
-            current_time['milliseconds'] = '0' + current_time['milliseconds'];
-        }
-    }
+    // Add extra 0s.
+    current_time['minutes'] = core_digits_min({
+      'number': current_time['minutes'],
+    });
+    current_time['seconds'] = core_digits_min({
+      'number': current_time['seconds'],
+    });
+    current_time['milliseconds'] = core_digits_min({
+      'digits': 3,
+      'number': current_time['milliseconds'],
+    });
 }
 
 function draw(){
