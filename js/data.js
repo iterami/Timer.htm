@@ -14,7 +14,7 @@ function add_split(){
 }
 
 function calculate_time(){
-    time_ms = core_date_to_timestamp() - start_time;
+    time_ms = date_to_timestamp() - start_time;
     current_time['hours'] = Math.floor(time_ms / 3600000);
     current_time['minutes'] = Math.floor(time_ms / 60000) % 60;
     current_time['seconds'] = Math.floor(time_ms / 1000) % 60;
@@ -75,7 +75,7 @@ function start(){
 
     document.getElementById('reset-key-display').value = 'Reset [T]';
     document.getElementById('start-key-display').value = 'Start [H]';
-    start_time = core_date_to_timestamp() - (start_time === -1 ? 0 : time_ms);
+    start_time = date_to_timestamp() - (start_time === -1 ? 0 : time_ms);
     core_interval_resume_all();
 }
 
