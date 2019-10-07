@@ -74,7 +74,7 @@ function start(){
     }
 
     document.getElementById('reset-key-display').value = 'Reset [T]';
-    document.getElementById('start-key-display').value = 'Start [H]';
+    document.getElementById('start-key-display').value = 'Start [X]';
     start_time = date_to_timestamp() - (start_time === -1 ? 0 : time_ms);
     core_interval_resume_all();
 }

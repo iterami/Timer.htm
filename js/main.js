@@ -41,11 +41,11 @@ function repo_init(){
         32: {
           'todo': add_split,
         },
-        72: {
-          'todo': start,
-        },
         84: {
           'todo': reset_timer,
+        },
+        88: {
+          'todo': start,
         },
       },
       'title': 'Timer.htm',
