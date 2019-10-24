@@ -51,6 +51,15 @@ function repo_init(){
       'title': 'Timer.htm',
     });
 
+    core_html_store({
+      'ids': [
+        'hours',
+        'milliseconds',
+        'minutes',
+        'seconds',
+        'splits',
+      ],
+    });
     core_interval_modify({
       'id': 'timer',
       'paused': true,

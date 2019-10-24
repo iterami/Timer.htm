@@ -6,7 +6,7 @@ function add_split(){
     }
 
     calculate_time();
-    document.getElementById('splits').innerHTML +=
+    core_elements['splits'].innerHTML +=
       current_time['hours'] + ':'
       + current_time['minutes'] + ':'
       + current_time['seconds'] + '.'
@@ -42,7 +42,7 @@ function draw(){
       'seconds',
     ];
     for(let id in ids){
-        document.getElementById(ids[id]).innerHTML = current_time[ids[id]];
+        core_elements[ids[id]].innerHTML = current_time[ids[id]];
     }
 }
 
@@ -64,7 +64,7 @@ function reset_timer(){
       'splits': '',
     };
     for(let id in ids){
-        document.getElementById(id).innerHTML = ids[id];
+        core_elements[ids[id]].innerHTML = ids[id];
     }
 }
 
