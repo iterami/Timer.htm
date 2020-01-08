@@ -42,7 +42,7 @@ function draw(){
       'seconds',
     ];
     for(let id in ids){
-        core_elements[ids[id]].innerHTML = current_time[ids[id]];
+        core_elements[ids[id]].textContent = current_time[ids[id]];
     }
 }
 
@@ -64,7 +64,7 @@ function reset_timer(){
       'splits': '',
     };
     for(let id in ids){
-        core_elements[ids[id]].innerHTML = ids[id];
+        core_elements[ids[id]].textContent = ids[id];
     }
 }
 
