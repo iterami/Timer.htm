@@ -64,7 +64,7 @@ function reset_timer(){
       'splits': '',
     };
     for(let id in ids){
-        core_elements[ids[id]].textContent = ids[id];
+        core_elements[id].textContent = ids[id];
     }
 }
 
