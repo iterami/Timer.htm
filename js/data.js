@@ -35,13 +35,13 @@ function calculate_time(){
 
 function draw(){
     calculate_time();
-    let ids = [
+    const ids = [
       'hours',
       'milliseconds',
       'minutes',
       'seconds',
     ];
-    for(let id in ids){
+    for(const id in ids){
         core_elements[ids[id]].textContent = current_time[ids[id]];
     }
 }
@@ -56,14 +56,14 @@ function reset_timer(){
 
     start_time = -1;
 
-    let ids = {
+    const ids = {
       'hours': '0',
       'milliseconds': '000',
       'minutes': '00',
       'seconds': '00',
       'splits': '',
     };
-    for(let id in ids){
+    for(const id in ids){
         core_elements[id].textContent = ids[id];
     }
 }
