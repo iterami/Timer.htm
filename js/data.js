@@ -48,7 +48,7 @@ function draw(){
 
 function reset_timer(){
     if(core_menu_open
-      || !window.confirm('Clear splits and reset timer?')){
+      || !globalThis.confirm('Clear splits and reset timer?')){
         return;
     }
 
