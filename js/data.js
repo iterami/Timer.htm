@@ -20,7 +20,6 @@ function calculate_time(){
     current_time['seconds'] = Math.floor(time_ms / 1000) % 60;
     current_time['milliseconds'] = time_ms % 1000;
 
-    // Add extra 0s.
     current_time['minutes'] = core_digits_min({
       'number': current_time['minutes'],
     });
