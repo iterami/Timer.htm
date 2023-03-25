@@ -6,7 +6,7 @@ function add_split(){
     }
 
     calculate_time();
-    core_elements['splits'].innerHTML +=
+    document.getElementById('splits').innerHTML +=
       current_time['hours'] + ':'
       + current_time['minutes'] + ':'
       + current_time['seconds'] + '.'
@@ -34,15 +34,14 @@ function calculate_time(){
 
 function draw(){
     calculate_time();
-    const ids = [
-      'hours',
-      'milliseconds',
-      'minutes',
-      'seconds',
-    ];
-    for(const id in ids){
-        core_elements[ids[id]].textContent = current_time[ids[id]];
-    }
+    core_ui_update({
+      'ids': {
+        'hours': current_time['hours'],
+        'milliseconds': current_time['milliseconds'],
+        'minutes': current_time['minutes'],
+        'seconds': current_time['seconds'],
+      },
+    });
 }
 
 function reset_timer(){
@@ -55,16 +54,14 @@ function reset_timer(){
 
     start_time = -1;
 
-    const ids = {
-      'hours': '0',
-      'milliseconds': '000',
-      'minutes': '00',
-      'seconds': '00',
-      'splits': '',
-    };
-    for(const id in ids){
-        core_elements[id].textContent = ids[id];
-    }
+    core_ui_update({
+      'ids': {
+        'hours': '0',
+        'milliseconds': '000',
+        'minutes': '0',
+        'seconds': '0',
+      },
+    });
 }
 
 function start(){
