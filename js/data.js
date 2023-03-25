@@ -42,6 +42,10 @@ function draw(){
         'seconds': current_time['seconds'],
       },
     });
+    document.title = current_time['hours'] + ':'
+      + current_time['minutes'] + ':'
+      + current_time['seconds'] + '.'
+      + current_time['milliseconds'];
 }
 
 function reset_timer(){
