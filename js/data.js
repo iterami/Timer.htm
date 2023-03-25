@@ -62,10 +62,11 @@ function reset_timer(){
       'ids': {
         'hours': '0',
         'milliseconds': '000',
-        'minutes': '0',
-        'seconds': '0',
+        'minutes': '00',
+        'seconds': '00',
       },
     });
+    document.title = '0:00:00.000';
 }
 
 function start(){
