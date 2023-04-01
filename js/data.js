@@ -45,7 +45,7 @@ function draw(){
     document.title = current_time['hours'] + ':'
       + current_time['minutes'] + ':'
       + current_time['seconds'] + '.'
-      + current_time['milliseconds'];
+      + current_time['milliseconds'] + ' - ' + core_repo_title;
 }
 
 function reset_timer(){
