@@ -86,14 +86,14 @@ function repo_init(){
         'time_ms': 0,
       },
       'keybinds': {
-        32: {
-          'todo': add_split,
-        },
-        84: {
+        'KeyT': {
           'todo': reset_timer,
         },
-        88: {
+        'KeyX': {
           'todo': start,
+        },
+        'Space': {
+          'todo': add_split,
         },
       },
       'title': 'Timer.htm',
