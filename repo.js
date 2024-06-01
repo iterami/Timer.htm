@@ -6,7 +6,7 @@ function add_split(){
     }
 
     calculate_time();
-    document.getElementById('splits').innerHTML +=
+    core_elements['splits'].innerHTML +=
       current_time['hours'] + ':'
       + current_time['minutes'] + ':'
       + current_time['seconds'] + '.'
@@ -98,6 +98,7 @@ function repo_init(){
       },
       'title': 'Timer.htm',
     });
+    core_elements['splits'] = document.getElementById('splits');
     core_interval_modify({
       'id': 'timer',
       'paused': true,
@@ -121,6 +122,7 @@ function reset_timer(){
         'milliseconds': '000',
         'minutes': '00',
         'seconds': '00',
+        'splits': '',
       },
     });
     document.title = '0:00:00.000';
