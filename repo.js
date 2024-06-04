@@ -97,8 +97,10 @@ function repo_init(){
         },
       },
       'title': 'Timer.htm',
+      'ui-elements': [
+        'splits',
+      ],
     });
-    core_elements['splits'] = document.getElementById('splits');
     core_interval_modify({
       'id': 'timer',
       'paused': true,
@@ -133,8 +135,6 @@ function start(){
         return;
     }
 
-    document.getElementById('reset-key-display').value = 'Reset [T]';
-    document.getElementById('start-key-display').value = 'Start [X]';
     start_time = date_to_timestamp() - (start_time === -1 ? 0 : time_ms);
     core_interval_resume_all();
 }
