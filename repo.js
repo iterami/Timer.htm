@@ -55,9 +55,9 @@ function repo_escape(){
 function repo_init(){
     core_repo_init({
       'beforeunload': {
-        'todo': function(){
+        'todo': function(event){
             if(start_time > -1){
-                return 'Timer and splits not yet saveable. Leave?';
+                event.preventDefault();
             }
         },
       },
