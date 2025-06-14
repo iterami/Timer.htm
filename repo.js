@@ -1,34 +1,34 @@
 'use strict';
 
 function add_split(){
-    if(core_intervals['timer']['paused']){
+    if(core_intervals.timer.paused){
         return;
     }
 
     calculate_time();
-    core_elements['splits'].innerHTML +=
-      current_time['hours'] + ':'
-      + current_time['minutes'] + ':'
-      + current_time['seconds'] + '.'
-      + current_time['milliseconds'] + '<br>';
+    core_elements.splits.innerHTML +=
+      current_time.hours + ':'
+      + current_time.minutes + ':'
+      + current_time.seconds + '.'
+      + current_time.milliseconds + '<br>';
 }
 
 function calculate_time(){
     time_ms = date_to_timestamp() - start_time;
-    current_time['hours'] = Math.floor(time_ms / 3600000);
-    current_time['minutes'] = Math.floor(time_ms / 60000) % 60;
-    current_time['seconds'] = Math.floor(time_ms / 1000) % 60;
-    current_time['milliseconds'] = time_ms % 1000;
+    current_time.hours = Math.floor(time_ms / 3600000);
+    current_time.minutes = Math.floor(time_ms / 60000) % 60;
+    current_time.seconds = Math.floor(time_ms / 1000) % 60;
+    current_time.milliseconds = time_ms % 1000;
 
-    current_time['minutes'] = core_digits_min({
-      'number': current_time['minutes'],
+    current_time.minutes = core_digits_min({
+      'number': current_time.minutes,
     });
-    current_time['seconds'] = core_digits_min({
-      'number': current_time['seconds'],
+    current_time.seconds = core_digits_min({
+      'number': current_time.seconds,
     });
-    current_time['milliseconds'] = core_digits_min({
+    current_time.milliseconds = core_digits_min({
       'digits': 3,
-      'number': current_time['milliseconds'],
+      'number': current_time.milliseconds,
     });
 }
 
@@ -36,16 +36,16 @@ function draw(){
     calculate_time();
     core_ui_update({
       'ids': {
-        'hours': current_time['hours'],
-        'milliseconds': current_time['milliseconds'],
-        'minutes': current_time['minutes'],
-        'seconds': current_time['seconds'],
+        'hours': current_time.hours,
+        'milliseconds': current_time.milliseconds,
+        'minutes': current_time.minutes,
+        'seconds': current_time.seconds,
       },
     });
-    document.title = current_time['hours'] + ':'
-      + current_time['minutes'] + ':'
-      + current_time['seconds'] + '.'
-      + current_time['milliseconds'];
+    document.title = current_time.hours + ':'
+      + current_time.minutes + ':'
+      + current_time.seconds + '.'
+      + current_time.milliseconds;
 }
 
 function repo_escape(){
@@ -117,7 +117,6 @@ function reset_timer(){
     stop();
 
     start_time = -1;
-
     core_ui_update({
       'ids': {
         'hours': '0',
