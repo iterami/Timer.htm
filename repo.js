@@ -97,7 +97,7 @@ function repo_init(){
         },
       },
       'title': 'Timer.htm',
-      'ui-elements': [
+      'ui_elements': [
         'splits',
       ],
     });
