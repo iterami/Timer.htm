@@ -87,13 +87,13 @@ function repo_init(){
       },
       'keybinds': {
         'KeyT': {
-          'todo': reset_timer,
+          'down': reset_timer,
         },
         'KeyX': {
-          'todo': start,
+          'down': start,
         },
         'Space': {
-          'todo': add_split,
+          'down': add_split,
         },
       },
       'title': 'Timer.htm',
