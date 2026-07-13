@@ -54,12 +54,10 @@ function repo_escape(){
 
 function repo_init(){
     core_repo_init({
-      'beforeunload': {
-        'todo': function(event){
-            if(start_time > -1){
-                event.preventDefault();
-            }
-        },
+      'beforeunload': function(event){
+          if(start_time > -1){
+              event.preventDefault();
+          }
       },
       'events': {
         'add-split': {
@@ -97,9 +95,7 @@ function repo_init(){
         },
       },
       'title': 'Timer.htm',
-      'ui_elements': [
-        'splits',
-      ],
+      'ui_elements': ['splits'],
     });
     core_interval_modify({
       'id': 'timer',
