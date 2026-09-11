@@ -54,11 +54,6 @@ function repo_escape(){
 
 function repo_init(){
     core_repo_init({
-      'beforeunload': function(event){
-          if(start_time > -1){
-              event.preventDefault();
-          }
-      },
       'events': {
         'add-split': {
           'onclick': add_split,
